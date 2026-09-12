@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>자기소개 카드</title>
+<title>about xowon..</title>
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 <style>
@@ -114,7 +114,7 @@
   }
 
   .intro-text{
-    font-size: 12.3px;
+    font-size: 11.8px;
     line-height: 1.75;
     color: var(--text-teal);
     white-space: pre-line;
@@ -137,23 +137,38 @@
     margin-top: 10px;
   }
 
-  .link-list a, .link-list .link-item{
+  .link-pair{
+    display:grid;
+    grid-template-columns: auto auto;
+    column-gap: 28px;
+    row-gap: 6px;
+    justify-content: start;
+    align-items: baseline;
+  }
+
+  .link-list .link-item{
     font-size: 13px;
     font-weight:600;
     color: var(--text-teal);
-    text-decoration:none;
     display:flex;
     align-items:baseline;
     gap:6px;
   }
 
-  .link-list a .link-label, .link-list .link-item .link-label{
+  .link-list .link-item a{
+    color: inherit;
+    font-weight:600;
+    text-decoration:none;
+  }
+
+  .link-list .link-item a:hover{ text-decoration: underline; }
+
+  .link-list .link-item .link-label{
     color: var(--text-sub);
     font-weight:500;
     font-size:12px;
   }
 
-  .link-list a:hover{ text-decoration: underline; }
 
   /* ---------- Divider ---------- */
   .divider{
@@ -260,7 +275,7 @@
   .list-row{
     display:flex;
     gap:8px;
-    font-size: 12.5px;
+    font-size: 11.8px;
     line-height:1.6;
   }
 
@@ -405,15 +420,18 @@
       padding: 22px 16px;
     }
     .works-grid{
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
     .work-card{
       aspect-ratio: 4 / 3;
     }
     .intro-text{
-      font-size: 11.5px;
+      font-size: 11px;
       line-height: 1.6;
+    }
+    .list-row{
+      font-size: 11px;
     }
   }
 </style>
@@ -441,25 +459,26 @@
       <div class="intro-block">
         <p class="intro-text">안녕하세요.. 반갑습니다 환영합니다
 자주 계정의 공개/비공개를 전환하고 있습니다
-접속률이 제멋대로인 데다가
-트윗 삭제를 자주 하기 때문에
+접속률이 제멋대로인 데다가 트윗 삭제를 자주 하기 때문에
 중요한 연락은 dm으로 남겨주시면 감사하겠습니다</p>
         <div class="link-list">
-          <a href="https://twitter.com/raemin2scence" target="_blank" rel="noopener">
-            <span class="link-label">MAIN account</span> @raemin2scence
-          </a>
-          <a href="https://twitter.com/xownoc" target="_blank" rel="noopener">
-            <span class="link-label">OC account</span> @xownoc
-          </a>
-          <a href="https://twitter.com/xownhsr" target="_blank" rel="noopener">
-            <span class="link-label">HSR account</span> @xownhsr
-          </a>
-          <span class="link-item link-group-gap">
-            <span class="link-label">DISCORD</span> @xowonim
+          <span class="link-item">
+            <span class="link-label">MAIN account</span> <a href="https://twitter.com/raemin2scence" target="_blank" rel="noopener">@raemin2scence</a>
           </span>
-          <a href="https://kre.pe/p32L" target="_blank" rel="noopener">
-            <span class="link-label">CREPE</span> @xowon
-          </a>
+          <div class="link-pair link-group-gap">
+            <span class="link-item">
+              <span class="link-label">OC account</span> <a href="https://twitter.com/xownoc" target="_blank" rel="noopener">@xownoc</a>
+            </span>
+            <span class="link-item">
+              <span class="link-label">HSR account</span> <a href="https://twitter.com/xownhsr" target="_blank" rel="noopener">@xownhsr</a>
+            </span>
+            <span class="link-item">
+              <span class="link-label">CREPE</span> <a href="https://kre.pe/p32L" target="_blank" rel="noopener">@xowon</a>
+            </span>
+            <span class="link-item">
+              <span class="link-label">DISCORD</span> @xowonim
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -498,7 +517,7 @@
         </button>
       </div>
 
-      <p class="extra-note">이외에도 종종 <span class="tooltip-trigger" onclick="showTooltip(event, 'KIA TIGERS, 곽도규')">KBO</span>와 <span class="tooltip-trigger" onclick="showTooltip(event, 'only 빠대 힐러 유저. (루시우 주력)')">오버워치</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '다미아냐, 로이요르')">스파이패밀리</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '6.4 完\n최애 : 데인슬레이프, 타르탈리아\n차애 : 느비예트, 이파, 키니치, 타이나리\ncp : 탐카베, 다이케이')">원신</span>, 모동숲, 메이플스토리 이야기를 합니다.</p>
+      <p class="extra-note">이외에도 종종 <span class="tooltip-trigger" onclick="showTooltip(event, 'KIA TIGERS (곽도규)')">KBO</span>와 <span class="tooltip-trigger" onclick="showTooltip(event, 'only 빠대 힐러 유저. (루시우 주력)')">오버워치</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '다미아냐, 로이요르')">스파이패밀리</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '6.4 完\n최애 : 데인슬레이프, 타르탈리아\n차애 : 느비예트, 이파, 키니치, 타이나리\ncp : 탐카베, 다이케이')">원신</span>, 모동숲, 메이플스토리 이야기를 합니다.</p>
 
       <div class="list-row ng" style="margin-top:8px;">
         <span class="label">NG :</span>
