@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>자기소개 카드</title>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<style>
+  :root{
+    --bg-mint: #a9dcce;
+    --bg-mint-soft: #c3e9de;
+    --box-white: #ffffff;
+    --text-main: #2c3532;
+    --text-sub: #7c8b87;
+    --text-teal: #3f7f79;
+    --text-red: #ad5c56;
+    --pill-bg: #eef8f4;
+    --pill-border: #cdece2;
+    --divider: #e3efeb;
+    --card-radius: 36px;
+    --inner-radius: 20px;
+    --shadow: 0 20px 45px rgba(35, 80, 70, 0.18);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin:0;
+    padding:0;
+    min-height:100vh;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+    color: var(--text-main);
+  }
+
+  body{
+    background: linear-gradient(160deg, var(--bg-mint) 0%, var(--bg-mint-soft) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 48px 20px;
+  }
+
+  .card{
+    width:100%;
+    max-width: 920px;
+    background: var(--box-white);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow);
+    padding: 56px;
+    display:flex;
+    gap: 48px;
+  }
+
+  /* ---------- Left column ---------- */
+  .profile-col{
+    flex: 0 0 300px;
+    display:flex;
+    flex-direction:column;
+    gap: 26px;
+  }
+
+  .avatar-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+
+  .avatar{
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    flex-shrink:0;
+    background: radial-gradient(circle at 30% 25%, #ffe1ea, #f9b8cf 45%, #d98fb3 100%);
+    border: 3px solid var(--box-white);
+    box-shadow: 0 0 0 3px var(--pill-border);
+  }
+
+  .name-block .nickname{
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height:1.3;
+  }
+
+  .name-block .handle{
+    font-size: 13.5px;
+    color: var(--text-sub);
+    margin-top:2px;
+  }
+
+  .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .tag{
+    font-size: 12.5px;
+    font-weight:600;
+    color: var(--text-teal);
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space:nowrap;
+  }
+
+  .section-label{
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-sub);
+    letter-spacing: 0.02em;
+  }
+
+  .intro-text{
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--text-teal);
+    white-space: pre-line;
+  }
+
+  .intro-block{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  /* ---------- Divider ---------- */
+  .divider{
+    width:1px;
+    background: var(--divider);
+    flex-shrink:0;
+  }
+
+  /* ---------- Right column ---------- */
+  .works-col{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap: 22px;
+    min-width:0;
+  }
+
+  .works-header{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color: #d98fa9;
+  }
+
+  .works-header svg{ width:20px; height:20px; }
+
+  .works-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .work-card{
+    position:relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--inner-radius);
+    overflow:hidden;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    text-align:left;
+    background:
+      linear-gradient(to top, rgba(10,14,14,0.86) 0%, rgba(10,14,14,0.15) 60%, rgba(10,14,14,0) 100%),
+      linear-gradient(135deg, #cfe8e0, #9fd0c3 55%, #7cb9ae 100%);
+    transition: transform 0.15s ease;
+  }
+
+  .work-card:hover{ transform: translateY(-2px); }
+  .work-card:focus-visible{ outline: 3px solid var(--text-teal); outline-offset:2px; }
+
+  .work-card .work-text{
+    position:absolute;
+    left:14px;
+    right:14px;
+    bottom:12px;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+
+  .work-card .work-title{
+    font-size: 11.5px;
+    font-weight:600;
+    color:#ffffff;
+    opacity:0.5;
+  }
+
+  .work-card .character-name{
+    font-size: 16px;
+    font-weight:700;
+    color:#ffffff;
+  }
+
+  .list-row{
+    display:flex;
+    gap:8px;
+    font-size: 14px;
+    line-height:1.6;
+  }
+
+  .list-row .label{
+    flex-shrink:0;
+    font-weight:700;
+  }
+
+  .list-row.ng .label, .list-row.ng .value{ color: var(--text-red); }
+  .list-row.dream .label, .list-row.dream .value{ color: var(--text-teal); }
+
+  .bottom-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top: 4px;
+  }
+
+  .consider-btn{
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight:700;
+    color: var(--box-white);
+    background: linear-gradient(135deg, #5aa89e, #3f7f79);
+    border:none;
+    border-radius: 999px;
+    padding: 11px 22px;
+    cursor:pointer;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background: rgba(30, 45, 42, 0.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+    z-index: 100;
+  }
+
+  .modal-overlay.open{ display:flex; }
+
+  .modal-box{
+    width:100%;
+    max-width: 380px;
+    background: var(--box-white);
+    border-radius: 24px;
+    padding: 30px 28px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+    position:relative;
+  }
+
+  .modal-close{
+    position:absolute;
+    top:16px;
+    right:16px;
+    width:28px;
+    height:28px;
+    border:none;
+    background: var(--pill-bg);
+    border-radius:50%;
+    color: var(--text-sub);
+    font-size:16px;
+    cursor:pointer;
+    line-height:1;
+  }
+
+  .modal-title{
+    font-size: 17px;
+    font-weight:700;
+    margin: 0 0 4px 0;
+  }
+
+  .modal-subtitle{
+    font-size: 13px;
+    color: var(--text-sub);
+    margin: 0 0 16px 0;
+  }
+
+  .modal-body{
+    font-size: 14px;
+    line-height:1.7;
+    color: var(--text-main);
+    white-space: pre-line;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 700px){
+    .card{
+      flex-direction:column;
+      padding: 34px 26px;
+      gap: 32px;
+    }
+    .profile-col{ flex-basis:auto; }
+    .divider{ width:100%; height:1px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- ================= LEFT: PROFILE ================= -->
+    <div class="profile-col">
+      <div class="avatar-row">
+        <div class="avatar"></div>
+        <div class="name-block">
+          <div class="nickname">닉네임</div>
+          <div class="handle">@twitter_id</div>
+        </div>
+      </div>
+
+      <div class="tag-row">
+        <span class="tag">성인</span>
+        <span class="tag">여</span>
+        <span class="tag">RT Free</span>
+      </div>
+
+      <div class="intro-block">
+        <span class="section-label">소개</span>
+        <p class="intro-text">안녕하세요, 편하게 놀러 와 주세요.
+소통은 언제나 환영입니다 :)
+맞팔은 취향껏 편하게 정리해 주세요.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ================= RIGHT: WORKS ================= -->
+    <div class="works-col">
+
+      <div class="works-header">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.6-4.6-10.2-9.1C.4 9.1 1.6 5.6 4.8 4.6c2-.6 4 .2 5.2 2 .4.6 1.4.6 1.8 0 1.2-1.8 3.2-2.6 5.2-2 3.2 1 4.4 4.5 3 7.3C19.6 16.4 12 21 12 21z"/></svg>
+      </div>
+
+      <div class="works-grid">
+        <button class="work-card" onclick="openWork(1)">
+          <span class="work-text">
+            <span class="work-title">작품명 1</span>
+            <span class="character-name">최애 캐릭터 1</span>
+          </span>
+        </button>
+        <button class="work-card" onclick="openWork(2)">
+          <span class="work-text">
+            <span class="work-title">작품명 2</span>
+            <span class="character-name">최애 캐릭터 2</span>
+          </span>
+        </button>
+        <button class="work-card" onclick="openWork(3)">
+          <span class="work-text">
+            <span class="work-title">작품명 3</span>
+            <span class="character-name">최애 캐릭터 3</span>
+          </span>
+        </button>
+        <button class="work-card" onclick="openWork(4)">
+          <span class="work-text">
+            <span class="work-title">작품명 4</span>
+            <span class="character-name">최애 캐릭터 4</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="list-row ng">
+        <span class="label">NG :</span>
+        <span class="value">과도한 애정 표현, 커플링 강요, 반말</span>
+      </div>
+      <div class="list-row dream">
+        <span class="label">드림 :</span>
+        <span class="value">팬아트, 합작, 자유로운 소통</span>
+      </div>
+
+      <div class="bottom-row">
+        <button class="consider-btn" onclick="openConsider()">배려리스트</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL ================= -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3 class="modal-title" id="modalTitle">제목</h3>
+      <p class="modal-subtitle" id="modalSubtitle"></p>
+      <div class="modal-body" id="modalBody">내용</div>
+    </div>
+  </div>
+
+<script>
+  // Edit this object to fill in each work's real information.
+  const works = {
+    1: {
+      title: "작품명 1",
+      character: "최애 캐릭터 1",
+      subtitle: "작품명 1 · 최애 캐릭터 1",
+      body: "여기에 캐릭터 소개, 최애 포인트, 취향 태그 등\n원하는 설명을 자유롭게 적어주세요."
+    },
+    2: {
+      title: "작품명 2",
+      character: "최애 캐릭터 2",
+      subtitle: "작품명 2 · 최애 캐릭터 2",
+      body: "여기에 캐릭터 소개, 최애 포인트, 취향 태그 등\n원하는 설명을 자유롭게 적어주세요."
+    },
+    3: {
+      title: "작품명 3",
+      character: "최애 캐릭터 3",
+      subtitle: "작품명 3 · 최애 캐릭터 3",
+      body: "여기에 캐릭터 소개, 최애 포인트, 취향 태그 등\n원하는 설명을 자유롭게 적어주세요."
+    },
+    4: {
+      title: "작품명 4",
+      character: "최애 캐릭터 4",
+      subtitle: "작품명 4 · 최애 캐릭터 4",
+      body: "여기에 캐릭터 소개, 최애 포인트, 취향 태그 등\n원하는 설명을 자유롭게 적어주세요."
+    }
+  };
+
+  const overlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const modalBody = document.getElementById('modalBody');
+
+  function openWork(id){
+    const w = works[id];
+    modalTitle.textContent = w.character;
+    modalSubtitle.textContent = w.subtitle;
+    modalBody.textContent = w.body;
+    overlay.classList.add('open');
+  }
+
+  function openConsider(){
+    modalTitle.textContent = "배려리스트";
+    modalSubtitle.textContent = "";
+    // Replace this text with your actual 배려리스트 content,
+    // or swap modalBody for an <iframe src="..."> pointing at your list site.
+    modalBody.textContent = "이곳에 배려리스트 내용을 입력하거나,\n배려리스트 사이트 링크를 연결해 주세요.";
+    overlay.classList.add('open');
+  }
+
+  function closeModal(){
+    overlay.classList.remove('open');
+  }
+
+  function closeModalOnBackdrop(e){
+    if (e.target === overlay) closeModal();
+  }
+
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
