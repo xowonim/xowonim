@@ -31,6 +31,7 @@
     min-height:100vh;
     font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
     color: var(--text-main);
+    overscroll-behavior: none;
   }
 
   body{
@@ -694,6 +695,7 @@ cp : 오키카구 <span class="muted-note">(좌우 상대 고정)</span>
     modalSubtitle.textContent = w.modalSubtitle;
     modalBody.innerHTML = w.bodyHTML;
     overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
   function openMeta(key){
@@ -701,6 +703,7 @@ cp : 오키카구 <span class="muted-note">(좌우 상대 고정)</span>
     modalSubtitle.textContent = '';
     modalBody.innerHTML = metaContent[key];
     overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
   function openConsider(){
@@ -710,10 +713,12 @@ cp : 오키카구 <span class="muted-note">(좌우 상대 고정)</span>
     // or swap modalBody for an <iframe src="..."> pointing at your list site.
     modalBody.textContent = "이곳에 배려리스트 내용을 입력하거나,\n배려리스트 사이트 링크를 연결해 주세요.";
     overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeModal(){
     overlay.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   function closeModalOnBackdrop(e){
