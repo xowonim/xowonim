@@ -288,6 +288,33 @@
   .list-row.dream .label, .list-row.dream .value{ color: var(--text-teal); }
   .list-row.dream .value a{ color: inherit; text-decoration: underline; }
 
+  .meta-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .meta-btn{
+    font-family: inherit;
+    font-size: 14px;
+    font-weight:700;
+    background: var(--box-white);
+    border-radius: 14px;
+    padding: 13px;
+    cursor:pointer;
+  }
+
+  .meta-btn--ng{
+    color: var(--text-red);
+    border: 1.5px solid var(--text-red);
+  }
+
+  .meta-btn--dream{
+    color: var(--text-teal);
+    border: 1.5px solid var(--text-teal);
+  }
+
   .extra-note{
     font-size: 11px;
     color: var(--text-main);
@@ -402,6 +429,15 @@
     line-height:1.7;
     color: var(--text-main);
     white-space: pre-line;
+  }
+
+  .img-placeholder{
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--pill-bg);
+    border: 1.5px dashed var(--pill-border);
+    border-radius: 14px;
+    margin-bottom: 10px;
   }
 
   /* ---------- Responsive ---------- */
@@ -522,19 +558,9 @@
 
       <p class="extra-note">이외에도 종종 <span class="tooltip-trigger" onclick="showTooltip(event, 'KIA TIGERS (곽도규)')">KBO</span>와 <span class="tooltip-trigger" onclick="showTooltip(event, 'only 빠대 힐러 유저. (루시우 주력)')">오버워치</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '다미아냐, 로이요르')">스파이패밀리</span>, <span class="tooltip-trigger" onclick="showTooltip(event, '6.4 完\n최애 : 데인슬레이프, 타르탈리아\n차애 : 느비예트, 이파, 키니치, 타이나리\ncp : 탐카베, 다이케이')">원신</span>, 모동숲, 메이플스토리 이야기를 합니다.</p>
 
-      <div class="list-row ng" style="margin-top:8px;">
-        <span class="label">NG :</span>
-        <span class="value">
-          <span style="font-weight:700;">비배스 및 아낙사 관련 cp, 종탈종, 카베탐, 플린일루플린 (절대 XXX)</span><br>
-          밑줄 표시 캐릭터 : 겹오시 or 겹드림, 프로세카 오시, 프로젝트문<br class="mobile-br"><span style="opacity:0.5;">(특히 림버스컴퍼니)</span>
-        </span>
-      </div>
-      <div class="list-row dream">
-        <span class="label">♡ :</span>
-        <span class="value">
-          프로젝트 세카이 - 시노노메 아키토 연인 및 카미고교 우정 드림 (<a href="https://twitter.com/akitoakina" target="_blank" rel="noopener">@akitoakina</a>)<br>
-          <span style="font-size:11px;">그리고 진심반 농담반으로 아낙사 유사 드립을 미친 듯이 합니다..<br class="mobile-br"> <span style="opacity:0.5;">(너무 사랑해서 그럼)</span></span>
-        </span>
+      <div class="meta-grid">
+        <button class="meta-btn meta-btn--ng" onclick="openMeta('ng')">NG</button>
+        <button class="meta-btn meta-btn--dream" onclick="openMeta('dream')">♡</button>
       </div>
 
     </div>
@@ -611,6 +637,26 @@ cp : 오키카구 <span class="muted-note">(좌우 상대 고정)</span>
     }
   };
 
+  // Content shown when the NG / ♡ buttons are tapped.
+  const metaContent = {
+    ng:
+`아래에 적힌 것 외에는 알아서 스루해요~
+
+· 밑줄 표시 캐릭터의 겹오시 or 겹드림 <span style="opacity:0.5;">(제가 먼저 팔로우했을 경우, 무시해 주세요)</span>
+· <span style="color:var(--text-red); font-weight:700;">비배스 관련 cp, 아낙사 관련 cp, 종탈종, 카베탐, 플린일루플린 (절대 XXX)</span>
+· 사이버불링의 의도가 보이는 트윗 <span style="opacity:0.5;">(블락합니다)</span>
+· 프로젝트문 <span style="opacity:0.5;">(특히 림버스컴퍼니)</span>
+
+추가로, 안 좋아하는 단어 표현이 있습니다
+· '앰어게인'이라는 표현을 정말 좋아하지 않습니다.. <span style="opacity:0.5;">(사용하면 바로 블락해요)</span>`,
+    dream:
+`<div class="img-placeholder"></div>
+프로젝트 세카이 : 시노노메 아키토 연인 및 카미고교 우정 드림 (<a href="https://twitter.com/akitoakina" target="_blank" rel="noopener">@akitoakina</a>)
+<span style="font-size:11px;">그리고 진심반 농담반으로 아낙사 유사 드립을 미친 듯이 합니다.. <span style="opacity:0.5;">(너무 사랑해서 그럼)</span></span>
+
+<span class="tooltip-trigger" onclick="showTooltip(event, '· 러브라이브! 니지가사키 학원 스쿨 아이돌 동호회 - 나카스 카스미\\n· 이나즈마 일레븐 - 카리야 마사키\\n· 파이널 판타지 14 - 아사히 사스 브루투스')">소중한 분이 계셔서 모시지 않는 드림이 있습니다</span>`
+  };
+
   const overlay = document.getElementById('modalOverlay');
   const modalTitle = document.getElementById('modalTitle');
   const modalSubtitle = document.getElementById('modalSubtitle');
@@ -621,6 +667,13 @@ cp : 오키카구 <span class="muted-note">(좌우 상대 고정)</span>
     modalTitle.textContent = w.modalTitle;
     modalSubtitle.textContent = w.modalSubtitle;
     modalBody.innerHTML = w.bodyHTML;
+    overlay.classList.add('open');
+  }
+
+  function openMeta(key){
+    modalTitle.textContent = key === 'ng' ? 'NG' : '♡';
+    modalSubtitle.textContent = '';
+    modalBody.innerHTML = metaContent[key];
     overlay.classList.add('open');
   }
 
