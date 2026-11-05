@@ -56,18 +56,18 @@
 
   .card{
     width:100%;
-    max-width: 920px;
+    max-width: 980px;
     background: var(--box-white);
     border-radius: var(--card-radius);
     box-shadow: var(--shadow);
-    padding: 56px;
+    padding: 52px;
     display:flex;
-    gap: 48px;
+    gap: 40px;
   }
 
   /* ---------- Left column ---------- */
   .profile-col{
-    flex: 0 0 300px;
+    flex: 0 0 352px;
     display:flex;
     flex-direction:column;
     gap: 14px;
@@ -235,6 +235,17 @@
     display:grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
+  }
+
+  @media (min-width: 901px){
+    .works-grid{
+      flex:1;
+      grid-auto-rows: 1fr;
+    }
+    .works-grid .work-card{
+      aspect-ratio: auto;
+      min-height: 130px;
+    }
   }
 
   .work-card{
