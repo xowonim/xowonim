@@ -56,7 +56,7 @@
 
   .card{
     width:100%;
-    max-width: 980px;
+    max-width: 1100px;
     background: var(--box-white);
     border-radius: var(--card-radius);
     box-shadow: var(--shadow);
@@ -67,7 +67,8 @@
 
   /* ---------- Left column ---------- */
   .profile-col{
-    flex: 0 0 352px;
+    flex: 1 1 0;
+    min-width:0;
     display:flex;
     flex-direction:column;
     gap: 14px;
@@ -208,6 +209,10 @@
     font-size:11px;
   }
 
+
+  @media (min-width: 901px) and (min-height: 620px){
+    html, body{ height:100%; min-height:0; overflow:hidden; }
+  }
 
   /* ---------- Divider ---------- */
   .divider{
